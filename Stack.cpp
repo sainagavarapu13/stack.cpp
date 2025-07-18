@@ -5,9 +5,9 @@ using namespace std;
 int main() {
     Stack stack;
 
-    stack.push(10);
-    stack.push(20);
-    stack.push(30);
+    stack.push(23);
+    stack.push(875);
+    stack.push(456);
 
     stack.display();
 
