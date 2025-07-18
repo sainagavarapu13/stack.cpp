@@ -1,57 +1,29 @@
-#include "Stack.h"
+#include "st.h"
 #include <iostream>
 using namespace std;
 
-Stack::Stack() : topPtr(nullptr) {}
+int main() {
+    Stack stack;
 
-Stack::~Stack() {
-    while (!isEmpty()) {
-        pop();
-    }
-}
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
 
-void Stack::push(int value) {
-    Node* newNode = new Node(value);
-    newNode->next = topPtr;
-    topPtr = newNode;
-}
+    stack.display();
 
-int Stack::pop() {
-    if (isEmpty()) {
-        cout << "Stack Underflow\n";
-        return -1;
-    }
-    
-    Node* temp = topPtr;
-    int poppedValue = temp->data;
-    topPtr = topPtr->next;
-    delete temp;
-    return poppedValue;
-}
+    cout << "Top element is: " << stack.peek() << endl;
+    cout << "Stack size: " << stack.getSize() << endl;
 
-int Stack::peek() {
-    if (isEmpty()) {
-        cout << "Stack is Empty\n";
-        return -1;
-    }
-    return topPtr->data;
-}
+    cout << stack.pop() << " popped from stack\n";
+    cout << stack.pop() << " popped from stack\n";
 
-bool Stack::isEmpty() const {
-    return topPtr == nullptr;
-}
+    stack.display();
 
-void Stack::display() const {
-    if (isEmpty()) {
-        cout << "Stack is Empty\n";
-        return;
-    }
-    
-    cout << "Stack elements (top to bottom): ";
-    Node* current = topPtr;
-    while (current != nullptr) {
-        cout << current->data << " ";
-        current = current->next;
-    }
-    cout << "\n";
+    cout << "Top element is: " << stack.peek() << endl;
+    cout << "Stack size: " << stack.getSize() << endl;
+
+    cout << stack.pop() << " popped from stack\n";
+    cout << stack.pop() << " popped from stack\n";  // Underflow
+
+    return 0;
 }
