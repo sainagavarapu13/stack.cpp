@@ -1,49 +1,22 @@
 #ifndef STACK_H
 #define STACK_H
 
-template <typename T>
 class Stack {
 private:
-    struct Node {
-        T data;
-        Node* next;
-        Node(const T& value) : data(value), next(nullptr) {}
-    };
-    
-    Node* topNode;
-    int stackSize;
+    int* arr;
+    int top;
+    int capacity;
 
 public:
-    // Constructor
-    Stack();
-    
-    // Destructor
-    ~Stack();
-    
-    // Copy constructor
-    Stack(const Stack& other);
-    
-    // Assignment operator
-    Stack& operator=(const Stack& other);
-    
-    // Push element onto stack
-    void push(const T& value);
-    
-    // Remove top element
-    void pop();
-    
-    // Get top element
-    T& top();
-    const T& top() const;
-    
-    // Check if stack is empty
-    bool empty() const;
-    
-    // Get size of stack
-    int size() const;
-    
-    // Clear the stack
-    void clear();
+    Stack(int size);       
+    ~Stack();               
+
+    void push(int value);   
+    int pop();              
+    int peek();             
+    bool isEmpty() const;   
+    bool isFull() const;    
+    void display() const;   
 };
 
-#endif 
+#endif
