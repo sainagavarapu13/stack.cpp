@@ -1,8 +1,8 @@
 #ifndef STACK_H
 #define STACK_H
 
-class Node {
-public:
+struct Node {
+
     int data;
     Node* next;
 
@@ -13,12 +13,12 @@ public:
 };
 
 // Stack class implementing the stack operations
-class Stack {
-private:
-    Node* top;  // Pointer to the top of the stack
+struct Stack {
+
+    Node* top;  
     int size;   // To keep track of the stack size
 
-public:
+
     Stack() {
         top = nullptr;
         size = 0;
