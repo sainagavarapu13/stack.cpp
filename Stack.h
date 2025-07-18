@@ -12,11 +12,11 @@ struct Node {
     }
 };
 
-// Stack class implementing the stack operations
+
 struct Stack {
 
     Node* top;  
-    int size;   // To keep track of the stack size
+    int size;   
 
 
     Stack() {
@@ -24,7 +24,7 @@ struct Stack {
         size = 0;
     }
 
-    // Push operation to add an element to the top of the stack
+    
     void push(int value) {
         Node* newNode = new Node(value);
         newNode->next = top;
@@ -33,7 +33,7 @@ struct Stack {
         cout << value << " pushed to stack\n";
     }
 
-    // Pop operation to remove and return the top element
+   
     int pop() {
         if (isEmpty()) {
             cout << "Stack Underflow\n";
@@ -80,16 +80,7 @@ struct Stack {
         }
         cout << endl;
     }
-
-    // Destructor to free memory
-    ~Stack() {
-        Node* current = top;
-        while (current != nullptr) {
-            Node* next = current->next;
-            delete current;
-            current = next;
-        }
-    }
+    
 };
 
 #endif
