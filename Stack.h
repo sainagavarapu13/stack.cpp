@@ -1,22 +1,95 @@
 #ifndef STACK_H
 #define STACK_H
 
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int value) {
+        data = value;
+        next = nullptr;
+    }
+};
+
+// Stack class implementing the stack operations
 class Stack {
 private:
-    int* arr;
-    int top;
-    int capacity;
+    Node* top;  // Pointer to the top of the stack
+    int size;   // To keep track of the stack size
 
 public:
-    Stack(int size);       
-    ~Stack();               
+    Stack() {
+        top = nullptr;
+        size = 0;
+    }
 
-    void push(int value);   
-    int pop();              
-    int peek();             
-    bool isEmpty() const;   
-    bool isFull() const;    
-    void display() const;   
+    // Push operation to add an element to the top of the stack
+    void push(int value) {
+        Node* newNode = new Node(value);
+        newNode->next = top;
+        top = newNode;
+        size++;
+        cout << value << " pushed to stack\n";
+    }
+
+    // Pop operation to remove and return the top element
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow\n";
+            return -1;
+        }
+        Node* temp = top;
+        int poppedValue = temp->data;
+        top = top->next;
+        delete temp;
+        size--;
+        return poppedValue;
+    }
+
+    // Peek operation to return the top element without removing it
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty\n";
+            return -1;
+        }
+        return top->data;
+    }
+
+    // Check if the stack is empty
+    bool isEmpty() {
+        return top == nullptr;
+    }
+
+    // Get the current size of the stack
+    int getSize() {
+        return size;
+    }
+
+    // Display all elements in the stack
+    void display() {
+        if (isEmpty()) {
+            cout << "Stack is empty\n";
+            return;
+        }
+        Node* current = top;
+        cout << "Stack elements: ";
+        while (current != nullptr) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
+
+    // Destructor to free memory
+    ~Stack() {
+        Node* current = top;
+        while (current != nullptr) {
+            Node* next = current->next;
+            delete current;
+            current = next;
+        }
+    }
 };
 
 #endif
